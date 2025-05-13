@@ -1,0 +1,14 @@
+Dia da aula que o assunto foi introduzido: 08/04/2025
+
+
+
+
+LIFO
+
+<<E>>
+Stack
++push(value: C)
++pop(): E
++top(): E ou +peek(): E
++height(): int
++isEmpty(): boolean
