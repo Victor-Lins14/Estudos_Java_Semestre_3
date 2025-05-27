@@ -19,6 +19,8 @@ public class Main {
         zara.set("Jersey P", 320);
         zara.set("Perfume", 10);
         System.out.println(zara);
+        zara.delete("Perfume");
+        System.out.println(zara);
 
     }
 

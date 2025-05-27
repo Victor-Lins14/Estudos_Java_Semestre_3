@@ -1,5 +1,8 @@
 package Codigos_sala._Hash_.collections;
 
+import Codigos_sala._Hash_.exceptions.EmptyHashTableException;
+import Codigos_sala._Hash_.exceptions.FullHashTableException;
+
 public class HashTable<K, V> extends AbstractHashTable<K, V> {
 
     public HashTable(int mapSize) {
@@ -28,17 +31,43 @@ public class HashTable<K, V> extends AbstractHashTable<K, V> {
             hashTable[index] = newNode;
         }
         size++;
-
     }
 
     @Override
     public Entry<K, V> get(K key) {
+        if (isEmpty()) throw new EmptyHashTableException("HashTable está vazia");
+        return getNodeByKeyAtIndex(key, hashFunction(key)).entry;
+    }
+
+    private Node getNodeByKeyAtIndex(K key, int index) {
+        Node auxNode = hashTable[index];
+        while (auxNode!=null) {
+            if (key.equals(auxNode.entry.getKey())) {
+                return auxNode;
+            }
+            auxNode = auxNode.next;
+        }
         return null;
     }
 
     @Override
     public Entry<K, V> delete(K key) {
-        return null;
+        int index = hashFunction(key);
+        Node toRemove = getNodeByKeyAtIndex(key, index);
+        if (toRemove == null) return null;
+        if (toRemove == hashTable[index]) {
+            hashTable[index] = hashTable[index].next;
+            if (hashTable[index] != null) {
+                hashTable[index].prev = null;
+            }
+        } else if (toRemove.next == null) {
+            toRemove.prev.next = null;
+        } else {
+            toRemove.next.prev = toRemove.prev;
+            toRemove.prev.next = toRemove.next;
+        }
+        size--;
+        return toRemove.entry;
     }
 
     @Override
