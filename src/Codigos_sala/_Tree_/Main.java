@@ -21,6 +21,7 @@ public class Main {
 
         System.out.println();
         System.out.println(mySBT.treeTraversal("inOrder"));
+        System.out.println(mySBT.treeTraversal("preOrder"));
         System.out.println(mySBT);
     }
 }

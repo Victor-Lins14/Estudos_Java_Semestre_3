@@ -42,6 +42,14 @@ public class RecursiveBinarySearchTree<E> extends BinaryTree<E> {
         }
         return treeData;
     }
+    protected String posOrder(String treeData, Node current) {
+        if (current != null) {
+            treeData = posOrder(treeData, current.left);
+            treeData = posOrder(treeData, current.right);
+            treeData += current.value + " ";
+        }
+        return treeData;
+    }
     protected String inOrder(String treeData, Node current) {
         if (current != null) {
             treeData = inOrder(treeData, current.left);
@@ -60,7 +68,7 @@ public class RecursiveBinarySearchTree<E> extends BinaryTree<E> {
             } else if (type.equals("preOrder")) {
                 return preOrder("",root);
             } else {
-                return "";
+                return posOrder("", root);
             }
         }
     }
