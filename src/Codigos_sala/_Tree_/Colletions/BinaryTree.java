@@ -23,6 +23,10 @@ public abstract class BinaryTree<E> implements Tree<E> {
     public int compare(Node n1, Node n2) {
         return comparator.compare(n1.value, n2.value);
     }
+
+    public int compare(E value, Node node) {
+        return comparator.compare(value, node.value);
+    }
     @Override
     public boolean isEmpty() {
         return root == null;
