@@ -19,8 +19,42 @@ public class RecursiveBinarySearchTree<E> extends BinaryTree<E> {
         return current;
     }
 
+    private Node getMinNode(Node current) {
+
+        if (current.left == null) {
+            return current;
+        }
+
+        return getMinNode(current.left);
+    }
+
+    public Node delete(Node current, E value) {
+
+        if (current == null) {
+            return null;
+        }
+
+        if (compare(value, current)==0) {
+            if (current.left != null && current.right != null) {
+                current.value = getMinNode(current.right).value;
+                current.right = delete(current.right, current.value);
+            } else {
+                current = current.left != null ? current.left : current.right;
+            }
+        } else {
+            if (compare(value,current) < 0) {
+                current.left = delete(current.left, value);
+            } else {
+                current.right = delete(current.right, value);
+            }
+        }
+        return current;
+    }
+
     @Override
     public E delete(E value) {
+        root = delete(root, value);
+        size--;
         return null;
     }
 
