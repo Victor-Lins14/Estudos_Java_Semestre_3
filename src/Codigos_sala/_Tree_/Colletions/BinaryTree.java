@@ -27,6 +27,7 @@ public abstract class BinaryTree<E> implements Tree<E> {
     public int compare(E value, Node node) {
         return comparator.compare(value, node.value);
     }
+
     @Override
     public boolean isEmpty() {
         return root == null;

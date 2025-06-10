@@ -5,7 +5,7 @@ import Codigos_sala._Tree_.Colletions.RecursiveBinarySearchTree;
 
 public class Main {
     public static void main(String[] args) {
-        RecursiveBinarySearchTree<Integer> mySBT = new RecursiveBinarySearchTree<>();
+        BinarySearchTree<Integer> mySBT = new BinarySearchTree<>();
 
         mySBT.insert(200);
         mySBT.insert(50);
@@ -20,9 +20,12 @@ public class Main {
 
 
         System.out.println();
-        System.out.println(mySBT.treeTraversal("inOrder"));
+        System.out.println(mySBT.treeTraversal("preOrder"));
         mySBT.delete(225);
-        System.out.println(mySBT.treeTraversal("inOrder"));
-        System.out.println(mySBT);
+        System.out.println(mySBT.treeTraversal("preOrder"));
+        System.out.println(mySBT.internalNodeCount());
+        System.out.println(mySBT.isFull());
+
+
     }
 }
